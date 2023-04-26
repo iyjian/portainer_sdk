@@ -19,7 +19,7 @@ jobs:
     - name: Build and push Docker images to dockerhub
       uses: docker/build-push-action@v1
       with:
-        username: iyjian
+        username: ${{ secrets.DOCKERHUB_USERNAME }}}
         password: ${{ secrets.DOCKERHUB_PASSWORD }}
         repository: iyjian/portainer-sdk
         tag_with_ref: true
