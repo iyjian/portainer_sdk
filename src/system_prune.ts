@@ -25,8 +25,8 @@ async function getToken() {
   return response.data.jwt
 }
 
-async function pruneContainers(token: string) {
-  client.post(
+function pruneContainers(token: string) {
+  return client.post(
     `/endpoints/${options.env}/docker/images/prune`,
     {},
     {
@@ -37,8 +37,8 @@ async function pruneContainers(token: string) {
   )
 }
 
-async function pruneImages(token: string) {
-  client.post(
+function pruneImages(token: string) {
+  return client.post(
     `/endpoints/${options.env}/docker/containers/prune`,
     {},
     {
@@ -51,8 +51,11 @@ async function pruneImages(token: string) {
 
 async function main() {
   const token = await getToken()
-  await pruneContainers(token)
-  await pruneImages(token)
+  console.log(token)
+  const result1 = await pruneContainers(token)
+  console.log(result1.data)
+  const result2 = await pruneImages(token)
+  console.log(result2.data)
 }
 
 main()
