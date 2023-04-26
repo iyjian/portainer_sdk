@@ -11,8 +11,6 @@ program.parse()
 
 const options = program.opts()
 
-console.log(options)
-
 const client = axios.create({
   baseURL: options.host,
   timeout: 1800000,

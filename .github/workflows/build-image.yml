@@ -1,0 +1,25 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches:
+    - release
+    paths-ignore:
+    - ".vscode/**"
+jobs:
+
+  build:
+
+    runs-on: [ubuntu-latest]
+
+    steps:
+    - name: checkout code
+      uses: actions/checkout@v2
+
+    - name: Build and push Docker images to dockerhub
+      uses: docker/build-push-action@v1
+      with:
+        username: iyjian
+        password: ${{ secrets.DOCKERHUB_PASSWORD }}
+        repository: iyjian/portainer-sdk
+        tag_with_ref: true
